@@ -5,10 +5,20 @@ import {
   FluentProvider,
   teamsLightTheme,
 } from "@fluentui/react-components";
+import {
+  FilterRegular,
+  FilterDismissRegular,
+  ChevronDownRegular,
+  ChevronUpRegular,
+} from "@fluentui/react-icons";
+import { Button } from "@fluentui/react-components";
 import { DatePicker, IDatePickerStrings } from "@fluentui/react/lib/DatePicker";
-import { PrimaryButton } from "@fluentui/react/lib/Button";
+
+/* import { PrimaryButton } from "@fluentui/react/lib/Button"; */
 import styles from "./RecherchePersonnalisee.module.scss";
+//import { IIconProps } from "@fluentui/react";
 import { Stack } from "@fluentui/react/lib/Stack";
+//import { IconButton } from "@fluentui/react/lib/Button";
 
 interface SearchFiltersProps {
   availableTypes: string[];
@@ -20,6 +30,8 @@ interface SearchFiltersProps {
   // eslint-disable-next-line @rushstack/no-new-null
   onFilterDateChange: (dateStart: Date | null, dateEnd: Date | null) => void;
 }
+//const chevronDown: IIconProps = { iconName: "ChevronDown" };
+//const chevronUp: IIconProps = { iconName: "ChevronUp" };
 
 const SearchFilters: React.FC<SearchFiltersProps> = ({
   availableTypes,
@@ -34,13 +46,16 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({
   //const [filtersDate, setFiltersDate] = React.useState<string[]>([]);
   const [isTypesOpen, setIsTypesOpen] = React.useState<boolean>(false);
   const [isAuthorsOpen, setIsAuthorsOpen] = React.useState<boolean>(false);
+  const [isDatesOpen, setIsDatesOpen] = React.useState<boolean>(false);
 
   // 📌 Fonction pour basculer l'affichage d'un filtre
-  const toggleFilter = (filter: "type" | "author"): void => {
+  const toggleFilter = (filter: "type" | "author" | "dates"): void => {
     if (filter === "type") {
       setIsTypesOpen(!isTypesOpen);
-    } else {
+    } else if (filter === "author") {
       setIsAuthorsOpen(!isAuthorsOpen);
+    } else {
+      setIsDatesOpen(!isDatesOpen);
     }
   };
 
@@ -121,13 +136,33 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({
         className={styles.filter}
         style={{ padding: "15px", borderRight: "1px solid #ccc" }}
       >
-        <div
+        {/* <h4>Filtrer par type de fichier</h4> */}
+        <Button
+          icon={isTypesOpen ? <ChevronDownRegular /> : <ChevronUpRegular />}
+          iconPosition="after"
+          onClick={() => toggleFilter("type")}
+          title="Filtrer par type de fichier"
+          size="small"
+          className={styles.filterHeader}
+        >
+          Filtrer par type
+        </Button>
+        {/*         <IconButton
+          iconProps={chevronDown}
+          title="ChevronDown"
+          ariaLabel="ChevronDown"
+          disabled={false}
+          onClick={() => toggleFilter("type")}
+        >
+          Filtrer par type de fichier
+        </IconButton> */}
+        {/* <div
           className={styles.filterHeader}
           onClick={() => toggleFilter("type")}
         >
           <h4>Filtrer par type de fichier</h4>
           <span>{isTypesOpen ? "▲" : "▼"}</span>
-        </div>
+        </div> */}
         {isTypesOpen && (
           <div className={styles.filterContent}>
             {availableTypes.length > 0 ? (
@@ -143,17 +178,27 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({
                 </div>
               ))
             ) : (
-              <p>Aucun filtre tpe disponible</p>
+              <p>Aucun filtre type disponible</p>
             )}
           </div>
         )}
-        <div
+        <Button
+          icon={isTypesOpen ? <ChevronDownRegular /> : <ChevronUpRegular />}
+          iconPosition="after"
+          onClick={() => toggleFilter("author")}
+          title="Filtrer par auteur"
+          size="small"
+          className={styles.filterHeader}
+        >
+          Filtrer par auteur
+        </Button>
+        {/* <div
           className={styles.filterHeader}
           onClick={() => toggleFilter("author")}
         >
           <h4>Filtrer par auteur</h4>
           <span>{isAuthorsOpen ? "▲" : "▼"}</span>
-        </div>
+        </div> */}
         {isAuthorsOpen && (
           <div className={styles.filterContent}>
             {availableAuthors.length > 0 ? (
@@ -175,31 +220,65 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({
         )}
 
         <div className="search-filters">
-          <h4>Filtrer par date de modification</h4>
-          <Stack tokens={{ childrenGap: 10 }}>
-            <DatePicker
-              label="Début plage"
-              allowTextInput={true}
-              value={startDate ?? undefined}
-              onSelectDate={(date) => {
-                setStartDate(date ?? null);
-                updateDateFilters();
-              }}
-              strings={datePickerStrings}
-            />
+          <Button
+            icon={isTypesOpen ? <ChevronDownRegular /> : <ChevronUpRegular />}
+            iconPosition="after"
+            onClick={() => toggleFilter("dates")}
+            title="Filtrer par date"
+            size="small"
+            className={styles.filterHeader}
+          >
+            Filtrer par date
+          </Button>
+          {isDatesOpen && (
+            <Stack tokens={{ childrenGap: 10 }}>
+              <DatePicker
+                label="Début plage"
+                allowTextInput={true}
+                value={startDate ?? undefined}
+                onSelectDate={(date) => {
+                  setStartDate(date ?? null);
+                  updateDateFilters();
+                }}
+                strings={datePickerStrings}
+              />
 
-            <DatePicker
-              label="Fin plage"
-              allowTextInput={true}
-              value={endDate ?? undefined}
-              onSelectDate={(date) => {
-                setEndDate(date ?? null);
-                updateDateFilters();
-              }}
-              strings={datePickerStrings}
-            />
-            <PrimaryButton text="Appliquer" onClick={updateDateFilters} />
-            <PrimaryButton
+              <DatePicker
+                label="Fin plage"
+                allowTextInput={true}
+                value={endDate ?? undefined}
+                onSelectDate={(date) => {
+                  setEndDate(date ?? null);
+                  updateDateFilters();
+                }}
+                strings={datePickerStrings}
+              />
+              <div
+                style={{ display: "flex", gap: "10px", flexDirection: "row" }}
+              >
+                <Button
+                  icon={<FilterRegular />}
+                  onClick={updateDateFilters}
+                  title="Appliquer le filtre"
+                  size="small"
+                >
+                  Appliquer
+                </Button>
+                {/* <PrimaryButton text="Appliquer" onClick={updateDateFilters} /> */}
+                <Button
+                  icon={<FilterDismissRegular />}
+                  onClick={() => {
+                    setStartDate(null);
+                    setEndDate(null);
+                    onFilterDateChange(null, null); // Remettre à zéro côté parent
+                  }}
+                  size="small"
+                  title="Supprimer le filtre"
+                >
+                  Supprimer
+                </Button>
+              </div>
+              {/* <PrimaryButton
               text="Effacer les filtres"
               onClick={() => {
                 setStartDate(null);
@@ -207,8 +286,9 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({
                 onFilterDateChange(null, null); // Remettre à zéro côté parent
               }}
               styles={{ root: { backgroundColor: "#d13438", color: "white" } }}
-            />
-          </Stack>
+            /> */}
+            </Stack>
+          )}
         </div>
       </div>
     </FluentProvider>

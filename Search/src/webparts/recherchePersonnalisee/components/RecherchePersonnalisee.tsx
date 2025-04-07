@@ -8,6 +8,12 @@ import {
   teamsLightTheme,
   //Display,
 } from "@fluentui/react-components";
+import {
+  ChevronRight12Regular,
+  ChevronLeft12Regular,
+  ChevronDoubleRightRegular,
+  ChevronDoubleLeftRegular,
+} from "@fluentui/react-icons";
 import { SearchResult, SearchService } from "../Services/SearchService";
 import SearchFilters from "./SearchFilters";
 import styles from "./RecherchePersonnalisee.module.scss";
@@ -360,16 +366,15 @@ const SearchResults: React.FC<RecherchePersonnaliseeProps> = (
                 className={styles.paginationButton}
                 onClick={() => setCurrentPage(1)}
                 disabled={currentPage === 1}
-              >
-                ⏮
-              </Button>
+                icon={<ChevronDoubleLeftRegular />}
+              />
+
               <Button
                 className={styles.paginationButton}
                 onClick={() => setCurrentPage(currentPage - 1)}
                 disabled={currentPage === 1}
-              >
-                ◀
-              </Button>
+                icon={<ChevronLeft12Regular />}
+              />
               <span>
                 Page {currentPage} sur {totalPages}
               </span>
@@ -377,17 +382,15 @@ const SearchResults: React.FC<RecherchePersonnaliseeProps> = (
                 className={styles.paginationButton}
                 onClick={() => setCurrentPage(currentPage + 1)}
                 disabled={currentPage === totalPages}
-              >
-                ▶
-              </Button>
+                icon={<ChevronRight12Regular />}
+              />
               {/* Bouton "Dernière Page" */}
               <Button
                 className={styles.paginationButton}
                 onClick={() => setCurrentPage(totalPages)}
                 disabled={currentPage === totalPages}
-              >
-                ⏭
-              </Button>
+                icon={<ChevronDoubleRightRegular />}
+              />
             </div>
           )}
         </div>
