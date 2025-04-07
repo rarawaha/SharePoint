@@ -1,0 +1,40 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "recherche-personnalisee-client-side-solution",
+    "id": "a33434be-a6de-474d-b39a-ed7a23544462",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "developer": {
+      "name": "",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.20.0"
+    },
+    "metadata": {
+      "shortDescription": {
+        "default": "recherche-personnalisee description"
+      },
+      "longDescription": {
+        "default": "recherche-personnalisee description"
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "recherche-personnalisee Feature",
+        "description": "The feature that activates elements of the recherche-personnalisee solution.",
+        "id": "f23051a0-a9dd-47ac-a4ee-82898d6ff660",
+        "version": "1.0.0.0"
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/recherche-personnalisee.sppkg"
+  }
+}
