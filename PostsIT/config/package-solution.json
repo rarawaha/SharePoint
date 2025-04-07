@@ -1,0 +1,40 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "post-it-manager-client-side-solution",
+    "id": "a05af156-2a9d-480e-baa7-3ba911b96c0f",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "developer": {
+      "name": "",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.20.0"
+    },
+    "metadata": {
+      "shortDescription": {
+        "default": "postItManager description"
+      },
+      "longDescription": {
+        "default": "postItManager description"
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "post-it-manager Feature",
+        "description": "The feature that activates elements of the post-it-manager solution.",
+        "id": "323d4e73-8d85-4534-a44a-668cf12d7e72",
+        "version": "1.0.0.0"
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/post-it-manager.sppkg"
+  }
+}

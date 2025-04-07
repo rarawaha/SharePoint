@@ -1,0 +1,18 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "post-it-manager-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/postItManager/PostItManagerWebPart.js",
+          "manifest": "./src/webparts/postItManager/PostItManagerWebPart.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "PostItManagerWebPartStrings": "lib/webparts/postItManager/loc/{locale}.js"
+  }
+}

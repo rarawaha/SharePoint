@@ -1,0 +1,188 @@
+@import "~@fluentui/react/dist/sass/References.scss";
+
+/* ==========================
+    📌 STYLES GLOBAUX
+   ========================== */
+
+.container {
+  padding: 20px;
+  font-family: "Arial", sans-serif;
+}
+
+h2 {
+  font-size: 22px;
+  font-weight: bold;
+  text-align: center;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+/* ==========================
+      🎨 INPUTS & BOUTONS
+     ========================== */
+
+.inputField {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  font-size: 16px;
+  transition: all 0.3s ease-in-out;
+}
+
+.inputField:focus {
+  border-color: #0078d4;
+  outline: none;
+  box-shadow: 0px 0px 8px rgba(0, 120, 212, 0.3);
+}
+
+.button {
+  background-color: #0078d4;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.button:hover {
+  background-color: #005a9e;
+  transform: scale(1.05);
+}
+
+/* ==========================
+      📝 POST-ITS
+     ========================== */
+
+.postItContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 20px;
+  padding: 15px;
+  border: 2px dashed #ddd;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  min-height: 350px;
+  color: #fff;
+}
+
+.postIt {
+  width: 180px;
+  min-height: 120px;
+  padding: 15px;
+  padding-bottom: 5px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: move;
+  position: absolute;
+  transition: transform 0.2s ease-in-out;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+.postIt:hover {
+  transform: scale(1.05);
+}
+
+.postIt h4 {
+  font-size: 16px;
+  margin-bottom: 5px;
+  margin: 0;
+  padding: 0;
+}
+
+.postIt p {
+  font-size: 12px;
+  font-weight: normal;
+}
+
+/* ==========================
+      🛠 MODE ÉDITION
+     ========================== */
+
+.editMode {
+  background: #fff;
+  border: 2px solid #0078d4;
+  box-shadow: 0px 0px 10px rgba(0, 120, 212, 0.2);
+}
+
+.editButtons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+}
+
+.editButtons2 {
+  display: flex;
+  flex-direction: row;
+  align-items: end;
+  justify-content: flex-end;
+}
+/* ==========================
+      🎨 COULEURS DES POST-ITS
+     ========================== */
+
+.yellow {
+  background-color: #ffeb3b;
+}
+.blue {
+  background-color: #03a9f4;
+  color: white;
+}
+.green {
+  background-color: #4caf50;
+  color: white;
+}
+.red {
+  background-color: #f44336;
+  color: white;
+}
+.purple {
+  background-color: #9c27b0;
+  color: white;
+}
+
+.colorSelection {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+label[class^="ms-ChoiceField-field"] {
+  display: none;
+}
+.colorBox {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: inline-block;
+  border: 2px solid #ccc;
+  cursor: pointer;
+}
+
+div.colorSelection > div > div {
+  display: flex;
+  flex-direction: row;
+  column-gap: 20px;
+}
+
+.toggle {
+  margin-bottom: 15px;
+}
+
+.formContainer {
+  padding: 15px;
+  background: #f4f4f4;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.buttonEdit {
+  margin-right: 10px;
+}
