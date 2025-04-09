@@ -50,14 +50,16 @@ export class SearchService {
     if (
       fileType === "jpg" ||
       fileType === "png" ||
-      fileType === "jpeg" ||
-      fileType === "mp4"
+      fileType === "jpeg" /* ||
+      fileType === "mp4" */
     ) {
       return `${
         this.currentContext.pageContext.web.absoluteUrl
       }/_layouts/15/viewer.aspx?sourcedoc=${uniqueId}&file=${path
         .split("/")
         .pop()}&action=default&mobileredirect=true`;
+    } else if (fileType === "mp4" || fileType === "avi" || fileType === "avi") {
+      return path;
     } else if (
       fileType === "docx" ||
       fileType === "xlsx" ||

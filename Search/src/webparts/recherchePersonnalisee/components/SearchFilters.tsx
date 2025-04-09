@@ -125,9 +125,6 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({
       const dateSup = new Date(formattedEnd);
       onFilterDateChange(dateInf, dateSup);
     }
-
-    //setFiltersDate(newFilters);
-    //onFilterDateChange([dateInf, dateSup]);
   };
 
   return (
@@ -136,7 +133,6 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({
         className={styles.filter}
         style={{ padding: "15px", borderRight: "1px solid #ccc" }}
       >
-        {/* <h4>Filtrer par type de fichier</h4> */}
         <Button
           icon={isTypesOpen ? <ChevronDownRegular /> : <ChevronUpRegular />}
           iconPosition="after"
@@ -147,22 +143,6 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({
         >
           Filtrer par type
         </Button>
-        {/*         <IconButton
-          iconProps={chevronDown}
-          title="ChevronDown"
-          ariaLabel="ChevronDown"
-          disabled={false}
-          onClick={() => toggleFilter("type")}
-        >
-          Filtrer par type de fichier
-        </IconButton> */}
-        {/* <div
-          className={styles.filterHeader}
-          onClick={() => toggleFilter("type")}
-        >
-          <h4>Filtrer par type de fichier</h4>
-          <span>{isTypesOpen ? "▲" : "▼"}</span>
-        </div> */}
         {isTypesOpen && (
           <div className={styles.filterContent}>
             {availableTypes.length > 0 ? (
@@ -182,8 +162,9 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({
             )}
           </div>
         )}
+
         <Button
-          icon={isTypesOpen ? <ChevronDownRegular /> : <ChevronUpRegular />}
+          icon={isAuthorsOpen ? <ChevronDownRegular /> : <ChevronUpRegular />}
           iconPosition="after"
           onClick={() => toggleFilter("author")}
           title="Filtrer par auteur"
@@ -192,13 +173,6 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({
         >
           Filtrer par auteur
         </Button>
-        {/* <div
-          className={styles.filterHeader}
-          onClick={() => toggleFilter("author")}
-        >
-          <h4>Filtrer par auteur</h4>
-          <span>{isAuthorsOpen ? "▲" : "▼"}</span>
-        </div> */}
         {isAuthorsOpen && (
           <div className={styles.filterContent}>
             {availableAuthors.length > 0 ? (
@@ -219,77 +193,62 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({
           </div>
         )}
 
-        <div className="search-filters">
-          <Button
-            icon={isTypesOpen ? <ChevronDownRegular /> : <ChevronUpRegular />}
-            iconPosition="after"
-            onClick={() => toggleFilter("dates")}
-            title="Filtrer par date"
-            size="small"
-            className={styles.filterHeader}
-          >
-            Filtrer par date
-          </Button>
-          {isDatesOpen && (
-            <Stack tokens={{ childrenGap: 10 }}>
-              <DatePicker
-                label="Début plage"
-                allowTextInput={true}
-                value={startDate ?? undefined}
-                onSelectDate={(date) => {
-                  setStartDate(date ?? null);
-                  updateDateFilters();
-                }}
-                strings={datePickerStrings}
-              />
-
-              <DatePicker
-                label="Fin plage"
-                allowTextInput={true}
-                value={endDate ?? undefined}
-                onSelectDate={(date) => {
-                  setEndDate(date ?? null);
-                  updateDateFilters();
-                }}
-                strings={datePickerStrings}
-              />
-              <div
-                style={{ display: "flex", gap: "10px", flexDirection: "row" }}
-              >
-                <Button
-                  icon={<FilterRegular />}
-                  onClick={updateDateFilters}
-                  title="Appliquer le filtre"
-                  size="small"
-                >
-                  Appliquer
-                </Button>
-                {/* <PrimaryButton text="Appliquer" onClick={updateDateFilters} /> */}
-                <Button
-                  icon={<FilterDismissRegular />}
-                  onClick={() => {
-                    setStartDate(null);
-                    setEndDate(null);
-                    onFilterDateChange(null, null); // Remettre à zéro côté parent
-                  }}
-                  size="small"
-                  title="Supprimer le filtre"
-                >
-                  Supprimer
-                </Button>
-              </div>
-              {/* <PrimaryButton
-              text="Effacer les filtres"
-              onClick={() => {
-                setStartDate(null);
-                setEndDate(null);
-                onFilterDateChange(null, null); // Remettre à zéro côté parent
+        <Button
+          icon={isDatesOpen ? <ChevronDownRegular /> : <ChevronUpRegular />}
+          iconPosition="after"
+          onClick={() => toggleFilter("dates")}
+          title="Filtrer par date"
+          size="small"
+          className={styles.filterHeader}
+        >
+          Filtrer par date
+        </Button>
+        {isDatesOpen && (
+          <Stack tokens={{ childrenGap: 10 }}>
+            <DatePicker
+              label="Début plage"
+              allowTextInput={true}
+              value={startDate ?? undefined}
+              onSelectDate={(date) => {
+                setStartDate(date ?? null);
+                updateDateFilters();
               }}
-              styles={{ root: { backgroundColor: "#d13438", color: "white" } }}
-            /> */}
-            </Stack>
-          )}
-        </div>
+              strings={datePickerStrings}
+            />
+            <DatePicker
+              label="Fin plage"
+              allowTextInput={true}
+              value={endDate ?? undefined}
+              onSelectDate={(date) => {
+                setEndDate(date ?? null);
+                updateDateFilters();
+              }}
+              strings={datePickerStrings}
+            />
+            <div style={{ display: "flex", gap: "10px", flexDirection: "row" }}>
+              <Button
+                icon={<FilterRegular />}
+                onClick={updateDateFilters}
+                title="Appliquer le filtre"
+                size="small"
+              >
+                Appliquer
+              </Button>
+              <Button
+                icon={<FilterDismissRegular />}
+                onClick={() => {
+                  setStartDate(null);
+                  setEndDate(null);
+                  onFilterDateChange(null, null); // Remettre à zéro côté parent
+                }}
+                size="small"
+                title="Supprimer le filtre"
+              >
+                Supprimer
+              </Button>
+            </div>
+          </Stack>
+        )}
       </div>
     </FluentProvider>
   );

@@ -8,6 +8,9 @@ import {
   teamsLightTheme,
   //Display,
 } from "@fluentui/react-components";
+import styles from "./RecherchePersonnalisee.module.scss";
+import { WebPartContext } from "@microsoft/sp-webpart-base";
+import { ISearchResult } from "@pnp/sp/search";
 import {
   ChevronRight12Regular,
   ChevronLeft12Regular,
@@ -16,9 +19,8 @@ import {
 } from "@fluentui/react-icons";
 import { SearchResult, SearchService } from "../Services/SearchService";
 import SearchFilters from "./SearchFilters";
-import styles from "./RecherchePersonnalisee.module.scss";
-import { WebPartContext } from "@microsoft/sp-webpart-base";
-import { ISearchResult } from "@pnp/sp/search";
+import { VideoPreview } from "./VideoPreview";
+
 //import { set } from "@microsoft/sp-lodash-subset";
 
 //import { FileTypeIcon, IconType, ImageSize } from "@pnp/spfx-controls-react";
@@ -282,8 +284,8 @@ const SearchResults: React.FC<RecherchePersonnaliseeProps> = (
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      {(result.Title ?? "").length > 40
-                        ? result.Title?.substring(0, 340) + "..."
+                      {(result.Title ?? "").length > 105
+                        ? result.Title?.substring(0, 90) + "..."
                         : result.Title}
                     </a>
                   </div>
@@ -298,7 +300,7 @@ const SearchResults: React.FC<RecherchePersonnaliseeProps> = (
                     <div
                       style={{
                         lineBreak: "anywhere",
-                        flexBasis: "70%",
+                        flexBasis: "60%",
                         flexGrow: "0",
                         flexShrink: "0",
                       }}
@@ -307,7 +309,7 @@ const SearchResults: React.FC<RecherchePersonnaliseeProps> = (
                     </div>
                     <div
                       style={{
-                        flexBasis: "100px",
+                        flexBasis: "35%",
                         flexGrow: "0",
                         flexShrink: "0",
                         textAlign: "center",
@@ -318,7 +320,11 @@ const SearchResults: React.FC<RecherchePersonnaliseeProps> = (
                     >
                       {/* Affichage de la prévisualisation pour les types supportés */}
                       {result.PictureThumbnailURL &&
-                        result.OpenInBrowserURL && (
+                        (result.FileType === "mp4" ||
+                        result.FileType === "avi" ||
+                        result.FileType === "mov" ? (
+                          <VideoPreview embedUrl={result.Path} />
+                        ) : (
                           <a
                             href={result.OpenInBrowserURL}
                             target="_blank"
@@ -330,7 +336,7 @@ const SearchResults: React.FC<RecherchePersonnaliseeProps> = (
                               className={styles.previewImage}
                             />
                           </a>
-                        )}
+                        ))}
                     </div>
                   </div>
                   <p>
