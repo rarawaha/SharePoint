@@ -113,7 +113,7 @@ export class SearchService {
         const queryInit: ISearchQuery = {
           Querytext: query,
           SourceId: "8413cd39-2156-4e00-b54d-11efd9abdb89",
-          QueryTemplate: `(FileType:docx OR FileType:pdf OR FileType:xlsx OR FileType:pptx OR FileType:txt OR FileType:jpg OR FileType:png OR FileType:gif OR FileType:aspx OR FileType:html OR FileType:mp4 OR FileType:mov OR FileType:wmv OR FileType:avi)} AND Path:${this.siteUrl}/*`, // AND Path:${this.siteUrl AND (FileType:docx OR FileType:pdf OR FileType:xlsx OR FileType:pptx OR FileType:txt OR FileType:jpg OR FileType:png OR FileType:gif OR FileType:aspx OR FileType:html OR FileType:mp4 OR FileType:mov OR FileType:wmv OR FileType:avi)`, // Limit search to the current site and include documents, images, pages, and videos
+          QueryTemplate: `(FileType:docx OR FileType:pdf OR FileType:xlsx OR FileType:pptx OR FileType:txt OR FileType:jpg OR FileType:png OR FileType:gif OR FileType:aspx OR FileType:html OR FileType:mp4 OR FileType:mov OR FileType:wmv OR FileType:avi)} AND Path:${this.siteUrl}/*`,
           RowLimit: maxResultsPerBatch,
           StartRow: currentStartRow, // Pagination : commence à la ligne actuelle
           EnableInterleaving: true,
@@ -147,7 +147,9 @@ export class SearchService {
             "PictureThumbnailURL",
             "Author",
           ],
-          RefinementFilters: [`or(FileType:equals(${query}),Title:${query}*)`],
+          /* RefinementFilters: [
+            `or(FileType:equals(${query}),Title:${query}*)`,
+          ], */
           /* Refiners: "FileType,FileName", */
         };
         const searchResults = await this.sp.search(queryInit);
@@ -196,12 +198,8 @@ export class SearchService {
           item.ServerRedirectedEmbedURL === undefined
             ? ""
             : item.ServerRedirectedEmbedURL,
-        /* FileName: item.FileName ?? "", // Récupération de FileName
-            : item.ServerRedirectedEmbedURL, */
         Author: item.Author === undefined ? "" : item.Author,
         FileType: item.FileType === undefined ? "" : item.FileType,
-        /*  FileName: item["FileName"] ?? "", // Récupération de FileName
-        FileRef: item.FileRef ?? "",  */ // Récupération de FileRef
         OpenInBrowserURL: this.getDocUrl(
           item.Path ?? "",
           item.FileType ?? "",

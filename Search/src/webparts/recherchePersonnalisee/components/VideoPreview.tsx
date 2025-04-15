@@ -14,7 +14,6 @@ export const VideoPreview: React.FC<IVideoPreviewProps> = ({ embedUrl }) => {
 
   return (
     <>
-      {/* <div onClick={() => setIsOpen(true)} style={{ cursor: "pointer" }}> */}
       {/* Miniature cliquable */}
       <div
         style={{
@@ -22,7 +21,7 @@ export const VideoPreview: React.FC<IVideoPreviewProps> = ({ embedUrl }) => {
           width: "100%",
           paddingTop: "56.25%",
           borderRadius: 6,
-          backgroundColor: "#000",
+          backgroundColor: "#f3f0ef",
           cursor: "pointer",
           overflow: "hidden",
         }}
@@ -31,7 +30,7 @@ export const VideoPreview: React.FC<IVideoPreviewProps> = ({ embedUrl }) => {
         {embedUrl && (
           <img
             src={embedUrl}
-            alt="Lire la vidéo"
+            alt=""
             style={{
               position: "absolute",
               top: 0,
@@ -50,7 +49,7 @@ export const VideoPreview: React.FC<IVideoPreviewProps> = ({ embedUrl }) => {
               top: "50%",
               left: "50%",
               transform: "translate(-50%, -50%)",
-              backgroundColor: "rgba(0,0,0,0.5)",
+              backgroundColor: "#d3d1d0",
               color: "#fff",
               fontSize: 32,
               width: 60,

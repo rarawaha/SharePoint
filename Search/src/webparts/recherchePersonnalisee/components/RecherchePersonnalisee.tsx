@@ -6,7 +6,6 @@ import {
   Button,
   FluentProvider,
   teamsLightTheme,
-  //Display,
 } from "@fluentui/react-components";
 import styles from "./RecherchePersonnalisee.module.scss";
 import { WebPartContext } from "@microsoft/sp-webpart-base";
@@ -20,10 +19,6 @@ import {
 import { SearchResult, SearchService } from "../Services/SearchService";
 import SearchFilters from "./SearchFilters";
 import { VideoPreview } from "./VideoPreview";
-
-//import { set } from "@microsoft/sp-lodash-subset";
-
-//import { FileTypeIcon, IconType, ImageSize } from "@pnp/spfx-controls-react";
 
 export interface RecherchePersonnaliseeProps {
   context: WebPartContext;
@@ -47,10 +42,6 @@ const SearchResults: React.FC<RecherchePersonnaliseeProps> = (
 
   const [dateFilterStart, setDateFilterStart] = React.useState<Date | null>();
   const [dateFilterEnd, setDateFilterEnd] = React.useState<Date | null>();
-
-  //Icon du document résultat de recherche
-  /* let fileExtension: string;
-  const iconUrl: string; */
 
   // 📌 Fonction pour exécuter la recherche
   const handleSearch = async (): Promise<void> => {
@@ -96,31 +87,10 @@ const SearchResults: React.FC<RecherchePersonnaliseeProps> = (
     //let resultResponse: SearchResult[] = [];
     setDateFilterStart(startDate);
     setDateFilterEnd(endDate);
-    /*
-    const filtered = results.filter((result) => {
-      if (!result.LastModifiedTime) return false;
-      const modified = new Date(result.LastModifiedTime);
 
-      if (startDate && modified < startDate) return false;
-      if (endDate && modified > endDate) return false;
-
-      return true;
-    }); */
     if (!startDate && !endDate) {
       setResults(results);
     }
-    /* if (startDate !== undefined && endDate !== undefined) {
-      resultResponse = results.filter((result2) => {
-        return (
-          new Date(result2.LastModifiedTime.toString().split("T")[0]) >=
-            startDate &&
-          new Date(result2.LastModifiedTime.toString().split("T")[0]) <= endDate
-        );
-      });
-    } else {
-      resultResponse = results;
-    }
-    setResults(resultResponse); */
   };
 
   // 📌 Détection de la touche "Entrée" pour lancer la recherche
@@ -204,30 +174,6 @@ const SearchResults: React.FC<RecherchePersonnaliseeProps> = (
         : siteUrl + `/_layouts/15/images/ic${fileType}.png`; */
   };
 
-  /* const getDocUrl = (
-    path: string,
-    fileType: string,
-    fileRef: string,
-    uniqueId: string
-  ): string => {
-    if (fileType === "pdf" || fileType === "txt" || fileType === "mp4") {
-      return `${
-        props.context.pageContext.web.absoluteUrl
-      }/_layouts/15/viewer.aspx?sourcedoc=${uniqueId}&file=${path
-        .split("/")
-        .pop()}&action=default&mobileredirect=true`;
-    }
-    if (
-      fileType === "jpg" ||
-      fileType === "png" ||
-      fileType === "gif" ||
-      fileType === "bmp"
-    ) {
-      return fileRef; //`blob:${fileRef}/${uniqueId}`;
-    }
-    return `${props.context.pageContext.web.absoluteUrl}/_layouts/Doc.aspx?sourcedoc=${fileRef}&file=${fileRef}&action=default&mobileredirect=true`;
-  }; */
-
   return (
     <FluentProvider theme={teamsLightTheme}>
       <div className={styles.layout}>
@@ -284,8 +230,8 @@ const SearchResults: React.FC<RecherchePersonnaliseeProps> = (
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      {(result.Title ?? "").length > 105
-                        ? result.Title?.substring(0, 90) + "..."
+                      {(result.Title ?? "").length > 80
+                        ? result.Title?.substring(0, 80) + "..."
                         : result.Title}
                     </a>
                   </div>

@@ -1,10 +1,5 @@
 import * as React from "react";
-import {
-  //Checkbox,
-  //Label,
-  FluentProvider,
-  teamsLightTheme,
-} from "@fluentui/react-components";
+import { FluentProvider, teamsLightTheme } from "@fluentui/react-components";
 import {
   FilterRegular,
   FilterDismissRegular,
@@ -14,24 +9,18 @@ import {
 import { Button } from "@fluentui/react-components";
 import { DatePicker, IDatePickerStrings } from "@fluentui/react/lib/DatePicker";
 
-/* import { PrimaryButton } from "@fluentui/react/lib/Button"; */
 import styles from "./RecherchePersonnalisee.module.scss";
-//import { IIconProps } from "@fluentui/react";
 import { Stack } from "@fluentui/react/lib/Stack";
-//import { IconButton } from "@fluentui/react/lib/Button";
 
 interface SearchFiltersProps {
   availableTypes: string[];
   selectedTypes: string[];
   availableAuthors: string[];
   selectedAuthors: string[];
-  //selectedDates: Date[];
   onFilterChange: (selectedTypes: string[], selectedAuthors: string[]) => void;
   // eslint-disable-next-line @rushstack/no-new-null
   onFilterDateChange: (dateStart: Date | null, dateEnd: Date | null) => void;
 }
-//const chevronDown: IIconProps = { iconName: "ChevronDown" };
-//const chevronUp: IIconProps = { iconName: "ChevronUp" };
 
 const SearchFilters: React.FC<SearchFiltersProps> = ({
   availableTypes,
@@ -43,7 +32,6 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({
 }) => {
   const [startDate, setStartDate] = React.useState<Date | null>(null);
   const [endDate, setEndDate] = React.useState<Date | null>(null);
-  //const [filtersDate, setFiltersDate] = React.useState<string[]>([]);
   const [isTypesOpen, setIsTypesOpen] = React.useState<boolean>(false);
   const [isAuthorsOpen, setIsAuthorsOpen] = React.useState<boolean>(false);
   const [isDatesOpen, setIsDatesOpen] = React.useState<boolean>(false);
@@ -116,8 +104,6 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({
 
   // Met à jour les filtres
   const updateDateFilters = (): void => {
-    //const newFilters: string[] = [];
-
     if (startDate && endDate) {
       const formattedStart = startDate.toISOString().split("T")[0];
       const formattedEnd = endDate.toISOString().split("T")[0];
